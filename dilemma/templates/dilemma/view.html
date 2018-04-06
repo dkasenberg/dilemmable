@@ -1,0 +1,20 @@
+{% extends "../base.html" %}
+
+{% block head_content %}
+<title>Dilemmable - {{ dilemma.name }}</title>
+{% endblock %}
+{% block content %}
+    <h1>{{ dilemma.name }}</h1>
+    <div id="dilemma_desc">{{ dilemma.text }}</div>
+
+    <div id="dilemma_options">
+
+    <form method="post">
+        {% csrf_token %}
+    {% for option in dilemma_options %}
+        <span><input type="radio" name="dilemma_option" value="{{ option.id }}" />{{ option.text }}</span>
+    {% endfor %}
+        <input type="submit" name="submit" />
+    </form>
+    </div>
+{% endblock %}

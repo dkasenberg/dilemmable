@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head_content %}
+<title>Account setup</title>
+{% endblock %}
+
+{% block content %}
+{% if valid %}
+<form action = "{{ request.path }}" method = "post">{% csrf_token %}
+  <fieldset>
+    <h2>Security Question</h2>
+
+    {% for field in security_form %}
+    <div class = "group-row">
+      {{ field.label_tag }}
+      {{ field }}
+      {% field_errors field %}
+    </div>
+    {% endfor %}
+  </fieldset>
+
+  <fieldset>
+    <h2>New Password</h2>
+
+    {% for field in password_form %}
+    <div class = "group-row">
+      {{ field.label_tag }}
+      {{ field }}
+      {% field_errors field %}
+    </div>
+    {% endfor %}
+  </fieldset>
+
+  <div class = "button-bar">
+    <button>Save</button>
+  </div>
+</form>
+{% endif %}
+{% endblock %}

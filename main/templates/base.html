@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'main/main.css' %}" />
+        <script src="{% static 'main/jquery-3.2.1.js' %}"></script>
+        {% block head_content %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+
+        {% endblock %}
+    </body>
+
+</html>

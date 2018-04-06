@@ -1,0 +1,34 @@
+{% extends "../base.html" %}
+
+{% block head_content %}
+        <title>Create a dilemma</title>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var num_option_boxes = 1;
+                $("#add_option").click(function() {
+                    num_option_boxes += 1;
+                    $(".dilemma-options-list")
+                        .append("<input type=\"text\" name=\"dilemma_option"+
+                            num_option_boxes+"\" />");
+                });
+            });
+        </script>
+{% endblock %}
+
+{% block content %}
+        <h1>Create a dilemma</h1>
+        <form action="{% url 'create' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="dilemma_name" />
+            <textarea name="dilemma_desc"></textarea>
+
+            <div class="dilemma-options">
+                <div class="dilemma-options-list">
+                    <input type="text" name="dilemma_option1" />
+                </div>
+                <input type="button" id="add_option" value="Add option" />
+            </div>
+
+            <input type="submit" id="submit" value="Submit" />
+        </form>
+{% endblock %}
